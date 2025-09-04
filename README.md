@@ -1,226 +1,127 @@
-SEC Insider Trading Analyzer
+🏢 SEC Insider Trading Analyzer
 
-🏢 A Production-Ready CrewAI-Based System for SEC Insider Trading Analysis
+An advanced, production-ready system that uses a multi-agent AI crew to analyze SEC insider trading filings, providing comprehensive reports and actionable insights.
 
-[![Python](https://img.shields.io/badge/PythonAIAI's modern multi-agent flow to deliver actionable insights and comprehensive executive reporting on SEC insider trading activity.
+This project retrieves live data from SEC EDGAR, processes it through specialized AI agents for sentiment analysis and data comparison, generates professional charts, and compiles a detailed executive report.
 
-    Live SEC EDGAR data retrieval (24hr + weekly for true comparison)
+✅ Key Features
 
-    Agent-driven data processing: Each agent specializes in a single task
+    Live SEC Data: Fetches Form 4 insider trading filings from the last 24 hours and the past week for true comparative analysis.
 
-    Visualization: Comparative and interactive charts
+    Agent-Driven Workflow: A modular crew of AI agents, each specializing in a single task like data scraping, sentiment analysis, chart generation, or report writing.
 
-    Sentiment analysis: Financial news, social media, and creator content
+    Advanced Sentiment Analysis: Gathers insights from financial news, social media (Twitter/X), and financial YouTube creator content to gauge market sentiment.
 
-    Error-tolerant workflow: Robust logging, retry logic, and safe fallback
+    Professional Visualizations: Automatically generates comparative bar charts and interactive Plotly dashboards to visualize trading volume and transaction types.
 
-    Report automation: Executive summaries, ranking, and recommendations
+    Robust & Resilient: Features comprehensive logging, error handling with safe fallbacks, and retry logic for API rate limits.
 
-    All pure Python — no Docker required
+    Automated Reporting: Produces detailed executive summaries, highlights risk flags, and delivers actionable signals in a clean, readable format.
 
-🚀 Quick Start
+🚀 Getting Started
+
+Follow these steps to get the SEC Insider Trading Analyzer up and running on your local machine.
+
 Prerequisites
 
-    Python 3.8+
+    Python 3.8 or higher
 
-    Groq API key (free)
+    A Groq API Key (available for free from GroqCloud)
 
-    Internet connection for live SEC data
+    An active internet connection to fetch live SEC data
 
-Installation
+1. Installation
 
-    Clone and set up environment:
+First, clone the repository and navigate into the project directory.
+Bash
 
-bash
-git clone <repository-url>
+git clone https://github.com/your-username/crewai-sec-analyzer.git
 cd crewai-sec-analyzer
+
+Next, create and activate a Python virtual environment.
+Bash
+
+# Create the virtual environment
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-Install dependencies:
+# Activate on macOS/Linux
+source venv/bin/activate
 
-bash
+# Activate on Windows
+venv\Scripts\activate
+
+Finally, install all the required dependencies.
+Bash
+
 pip install -r requirements.txt
 
-Configure environment variables:
+2. Configuration
 
-bash
+You need to configure your API keys and a contact email for SEC compliance.
+
+    Create a .env file by copying the example file.
+    Bash
+
 cp .env.example .env
-# Then edit .env with your Groq API and contact email for SEC API compliance
 
-Run demo or production analysis:
+Open the new .env file and add your credentials.
+Plaintext
 
-    bash
-    # To run a full validation demo (all features)
-    python demo_comprehensive.py
-    # For full production analysis
-    python crowdwisdom_complete.py
-    # For a quick simplified test
-    python simplified_main.py
+    # Required for the AI agents to function
+    GROQ_API_KEY="gsk_your_groq_api_key_here"
 
-🔧 Configuration
+    # Required by the SEC EDGAR API for identification
+    CONTACT_EMAIL="your-email@example.com"
 
-Required environment variables in your .env file:
+    # Optional: For enhanced sentiment analysis
+    TWITTER_API_KEY="your_twitter_key"
+    TWITTER_API_SECRET="your_twitter_secret"
+    YOUTUBE_API_KEY="your_youtube_api_key"
 
-text
-GROQ_API_KEY="gsk_your_groq_api_key_here"
-CONTACT_EMAIL="your-email@company.com"  # Required for SEC API compliance
+    # Optional: Set logging level (e.g., INFO, DEBUG)
+    LOG_LEVEL="INFO"
 
-Optional variables for sentiment (Twitter, YouTube):
+⚙️ Usage
 
-text
-TWITTER_API_KEY="your_twitter_key"
-TWITTER_API_SECRET="your_twitter_secret"
-TWITTER_ACCESS_TOKEN="your_access_token"
-TWITTER_ACCESS_TOKEN_SECRET="your_access_token_secret"
-YOUTUBE_API_KEY="your_youtube_api_key"
-LOG_LEVEL="INFO"
+The analyzer can be run in several modes depending on your needs. All generated outputs, including charts, logs, and reports, will be saved in the /reports directory.
 
-🏗️ Architecture
+Comprehensive Demo
 
-text
-┌─────────────────────────────────────────────┐
-│          CrewAI Flow Orchestration          │
-├─────────────────────────────────────────────┤
-│    📊 Data Agents        📈 Chart Agent      │
-│   • 24hr SEC Data       • Comparative       │
-│   • Weekly SEC Data     • Interactive       │
-│   • Data Processing     • Visualizations    │
-│   🎭 Sentiment Agents                       │
-│   • Financial News      • Social Media      │
-│   • YouTube Content                          │
-│    📄 Report Agent                          │
-└─────────────────────────────────────────────┘
+This is the recommended first step. It runs the entire pipeline using sample data to validate all features and agents without making live API calls.
+Bash
 
-Key directories:
+python demo_comprehensive.py
 
-    agents/ - Single-responsibility agents for each analysis step
+Quick Test
 
-    tools/ - Data scraping, charting, sentiment analysis utilities
+Runs a simplified, minimal version of the pipeline with live data. Ideal for a quick end-to-end test.
+Bash
 
-    flows/ - Full CrewAI pipeline orchestration
+python simplified_main.py
 
-    reports/ - All outputs (charts, logs, reports)
+Full Production Analysis
 
-🔥 Features
-1. SEC Data Retrieval
+Executes the complete, production-grade analysis. It fetches live 24-hour and 7-day data from the SEC, performs full sentiment analysis, and generates a comprehensive report.
+Bash
 
-    Live insider trading from SEC EDGAR (Form 4, 24hr and 1-week scraping)
+python main.py
 
-    Rate-limited, resilient interface with sample fallback
+🏗️ Project Structure
 
-2. Modular Agents & CrewAI Flow
+The project is organized into modular directories, each with a specific responsibility.
 
-    Specialized agents for:
+    📄 main.py / demo_*.py: The main entry points for running different analysis flows.
 
-        Real-time data scraping
+    agents/: Contains the definitions for each specialized AI agent (e.g., sec_data_agent, sentiment_agent, report_agent).
 
-        Weekly baseline comparison
+    tools/: Includes utility functions and classes for data scraping, API interaction, chart generation, and sentiment analysis.
 
-        Data normalization and aggregation
+    flows/: Orchestrates the entire workflow, defining the sequence of tasks and the crew of agents that will execute them.
 
-        Visual chart generation (matplotlib/plotly)
+    reports/: The output directory where all generated files (logs, charts, JSON data, and the final text report) are saved.
 
-        Sentiment analysis (news, Twitter/X, YouTube transcripts)
+    data/: Stores sample data used for demos and fallback scenarios when live APIs are unavailable.
 
-        Comprehensive report writing
-
-3. Professional Charting
-
-    24hr vs weekly bar charts
-
-    Transaction type and company ranking
-
-    Interactive dashboards (Plotly, HTML)
-
-4. Sentiment Analysis
-
-    Financial news and press coverage
-
-    Twitter/X public discussions
-
-    YouTube transcripts (10X creators)
-
-    Sentiment correlation with trading activity
-
-5. Robust Reporting
-
-    Multi-section text & markdown reports
-
-    Executive summary, risk flags, actionable signals
-
-    Files saved in reports/ with logs for every run
-
-6. Production-Ready Logging
-
-    Multi-level file and console logging
-
-    Error capture and fallback for API failures and rate limits
-
-📊 Sample Usage
-
-Quick SEC Data Analysis
-
-python
-from tools.sec_scraper import get_live_sec_data
-data_24hr = get_live_sec_data(24)
-print(f"Filings in last 24h: {len(data_24hr['recent_filings'])}")
-
-Basic Sentiment Analysis
-
-python
-from tools.sentiment_analyzer import analyze_market_sentiment
-sentiment = analyze_market_sentiment(json.dumps(['AAPL', 'MSFT']))
-print(sentiment)
-
-Generate Charts
-
-python
-from tools.chart_generator import create_comparison_chart
-# Compare two datasets for volume by company
-chart_result = create_comparison_chart(data_24hr, data_weekly)
-print(chart_result)
-
-📂 Output Files
-
-Generated in /reports/:
-
-    crowdwisdom_final_
-
-    report.txt - Main analysis and executive summary
-
-    volume_comparison_chart.png - Comparative bar chart
-
-    transaction_type_comparison.png - Transaction summary chart
-
-    interactive_comparison.html - Interactive Plotly dashboard
-
-    crowdwisdom_detailed.log - Complete execution log
-
-    raw_sec_data.json - All SEC data for reproducibility
-
-🛡️ Error Handling
-
-    Data validation for API and format consistency
-
-    Graceful fallback to sample data if live API unavailable
-
-    Comprehensive logs for all pipeline steps
-
-    Retry logic for API errors or rate limits
-
-🧪 Testing
-
-bash
-python demo_comprehensive.py    # Validates all modules and agents
-python simplified_main.py       # Minimal end-to-end pipeline
-
-🎬 Demo & Contributions
-
-For a full run-through, see demo_comprehensive.py.
-To contribute: fork, create a branch, make your changes, add tests, and submit a pull request.
 📄 License
 
-MIT License — see the LICENSE file for details.
-
-Built with ❤️ using CrewAI, Groq LLM, and the SEC EDGAR API
+This project is licensed under the MIT License. See the LICENSE file for more details.
