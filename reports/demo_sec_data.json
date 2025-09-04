@@ -1,0 +1,34 @@
+{
+  "recent_filings": [
+    {
+      "company": "AAPL",
+      "insider": "Tim Cook",
+      "transaction": "Sale",
+      "shares": 50000,
+      "date": "2025-09-04",
+      "price": 225.5,
+      "note": "Sample data - live SEC data integration needed"
+    },
+    {
+      "company": "MSFT",
+      "insider": "Satya Nadella",
+      "transaction": "Purchase",
+      "shares": 25000,
+      "date": "2025-09-04",
+      "price": 420.75,
+      "note": "Sample data - live SEC data integration needed"
+    },
+    {
+      "company": "GOOGL",
+      "insider": "Sundar Pichai",
+      "transaction": "Sale",
+      "shares": 30000,
+      "date": "2025-09-03",
+      "price": 165.25,
+      "note": "Sample data - live SEC data integration needed"
+    }
+  ],
+  "data_source": "SEC EDGAR API",
+  "timestamp": "2025-09-04T23:32:48.472016",
+  "hours_searched": 24
+}

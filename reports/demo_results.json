@@ -1,0 +1,18 @@
+{
+  "demo_results": {
+    "environment": "success",
+    "imports": "success",
+    "data_retrieval": "success",
+    "sentiment_analysis": "success",
+    "chart_generation": "success",
+    "agents": "success",
+    "complete_workflow": "success"
+  },
+  "timestamp": "2025-09-03T18:39:40.841331",
+  "success_rate": 1.0,
+  "companies_analyzed": [
+    "GOOGL",
+    "MSFT",
+    "AAPL"
+  ]
+}
